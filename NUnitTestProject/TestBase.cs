@@ -1,14 +1,9 @@
-﻿using Microsoft.Extensions.Configuration;
-using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using NUnit.Framework;
 
 namespace NUnitTestProject
 {
     public class TestBase : Base
-    {       
-
-          
-
+    {
         [SetUp]
         public void Setup()
         {
@@ -17,20 +12,20 @@ namespace NUnitTestProject
                 case "Chrome":
                     _driver = WebdriverSetup.SetupChrome();
                     break;
+
                 case "Edge":
                     _driver = WebdriverSetup.SetupEdge();
                     break;
-                default:                    
-                    break;
-            }
 
-            
+                default:
+                    throw new System.Exception("Incompatible browser selected");
+            }
         }
 
         [TearDown]
         public void TearDown()
         {
-            //driver.Quit();
+            _driver.Quit();
         }
     }
 }

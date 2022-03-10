@@ -14,7 +14,7 @@ namespace NUnitTestProject.PageObjects
 
         private IWebElement ProductGrid => Wait.Until(c => c.FindElement(By.Id("grid-items")));
 
-        private IEnumerable<IWebElement> Phones => Wait.Until(c => ProductGrid.FindElements(By.XPath("//*[@data-test='product-item-upcoming-false-TnseWapi']")));
+        private IEnumerable<IWebElement> Phones => Wait.Until(c => ProductGrid.FindElementsByDataTestId("product-item-upcoming-false-TnseWapi"));
 
         public PhoneDetailsPage SelectPhone(int phone)
         { 

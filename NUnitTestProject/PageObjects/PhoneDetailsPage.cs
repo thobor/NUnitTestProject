@@ -14,16 +14,11 @@ namespace NUnitTestProject.PageObjects
         }
         
         private IWebElement SubscriptionBlock => Wait.Until(c => c.FindElement(By.ClassName("subscription-picker")));
-        private IEnumerable<IWebElement> Subscriptions => Wait.Until(c => SubscriptionBlock.FindElements(By.XPath("//*[@data-test='subscription-picker-item']")));
-
-        //private IWebElement UsersBlock => Wait.Until(c => c.FindElement(By.ClassName("optional-users-block")));
-        //private IEnumerable<IWebElement> Users => Wait.Until(c => UsersBlock.FindElements(By.XPath("//*[@data-test='subscription-picker-item']")));
-
+        private IEnumerable<IWebElement> Subscriptions => Wait.Until(c => SubscriptionBlock.FindElementsByDataTestId("subscription-picker-item"));
         private IEnumerable<IWebElement> NewNumbersButtons => Wait.Until(c => c.FindElements(By.XPath("//*[@value='newNumber']")));
         private IEnumerable<IWebElement> KeepNumbersButtonss => Wait.Until(c => c.FindElements(By.XPath("//*[@value='keepNumber']")));
-
-        private IWebElement CartPanel => Wait.Until(c => c.FindElement(By.XPath("//*[@data-test='cart-panel']")));
-        private IWebElement ExtraUsers => Wait.Until(c => c.FindElement(By.XPath("//*[@data-test='ExtraSim']")));
+        private IWebElement CartPanel => Wait.Until(c => c.FindElementByDataTestId("cart-panel"));
+        private IWebElement ExtraUsers => Wait.Until(c => c.FindElementByDataTestId("ExtraSim"));
         private IWebElement ContinueButton => Wait.Until(c => CartPanel.FindElement(By.TagName("button")));
 
         public void SelectSubscriptions(int subscription)
@@ -35,7 +30,7 @@ namespace NUnitTestProject.PageObjects
 
         public void SelectNumberOfUsers(int users)
         {
-            Wait.Until(c => Subscriptions.Count() > 0);            
+            Wait.Until(c => Subscriptions.Count() > 0);
             Press(Subscriptions.ElementAt(users + 6));
         }
 
@@ -52,7 +47,7 @@ namespace NUnitTestProject.PageObjects
         }
 
         public CheckoutPage Continue()
-        {            
+        {
             Wait.Until(c => ContinueButton.Enabled);
             Press(ContinueButton);
 

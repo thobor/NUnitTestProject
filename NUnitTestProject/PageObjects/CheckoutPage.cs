@@ -7,7 +7,7 @@ namespace NUnitTestProject.PageObjects
         public CheckoutPage(IWebDriver driver)
             : base(driver)
         {
-            Wait.Until(c => c.FindElement(By.Id("CheckoutOrderPage")));        
+            Wait.Until(c => c.FindElement(By.Id("CheckoutOrderPage")));
         }
     }
 }
